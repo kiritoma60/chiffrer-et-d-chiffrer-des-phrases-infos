@@ -1,0 +1,64 @@
+print("5: crypto")
+
+choix_1 = input("choose a menu: ")
+
+if choix_1 == "5":
+    strat_1 = input("Voulez-vous chiffrer ou dechiffrer ? ").lower()
+
+    if strat_1 == "chiffrer":
+        print("Cesar, l'inverseur et le binaire sont disponibles")
+        strat_2 = input("Lequel voulez-vous utiliser ? (cesar/inverseur/binaire) : ").lower()
+        
+        if strat_2 == "cesar":
+            phrase = input("Quelle phrase voulez-vous chiffrer ?: ").lower()
+            cle = int(input("Choisissez une clé de chiffrement (nombre) : "))
+            phrase_chiffree = ""
+            for lettre in phrase:
+                if lettre.isalpha():
+                    nouvelle_lettre = chr((ord(lettre) - 97 + cle) % 26 + 97)
+                    phrase_chiffree += nouvelle_lettre
+                else:
+                    phrase_chiffree += lettre
+            print(f"Votre phrase chiffrée : {phrase_chiffree}")
+
+        elif strat_2 == "inverseur":
+            phrase = input("Quelle phrase voulez-vous inverser ?: ")
+            print(f"Résultat : {phrase[::-1]}")
+
+        elif strat_2 == "binaire":
+            phrase = input("Quelle phrase voulez-vous traduire en binaire ?: ").lower()
+            resultat_binaire = ""
+            for lettre in phrase:
+                resultat_binaire += format(ord(lettre), '08b') + " "
+            print(f"En binaire : {resultat_binaire}")
+
+    
+    elif strat_1 == "dechiffrer":
+        print("Cesar, l'inverseur et le binaire sont disponibles")
+        strat_2 = input("Lequel voulez-vous utiliser ? (cesar/inverseur/binaire) : ").lower()
+        
+        if strat_2 == "cesar":
+            phrase = input("Quelle phrase voulez-vous déchiffrer ?: ").lower()
+            cle = int(input("Entrez la clé de déchiffrement (nombre) : "))
+            phrase_dechiffree = ""
+            for lettre in phrase:
+                if lettre.isalpha():
+                    nouvelle_lettre = chr((ord(lettre) - 97 - cle) % 26 + 97)
+                    phrase_dechiffree += nouvelle_lettre
+                else:
+                    phrase_dechiffree += lettre
+            print(f"Votre phrase déchiffrée : {phrase_dechiffree}")
+            
+        elif strat_2 == "inverseur":
+            phrase = input("Quelle phrase voulez-vous remettre à l'endroit ?: ")
+            print(f"Votre phrase déchiffrée : {phrase[::-1]}")
+
+        elif strat_2 == "binaire":
+            phrase_binaire = input("Entrez le code binaire (avec des espaces) : ")
+            resultat_texte = ""
+            for bloc in phrase_binaire.split():
+                resultat_texte += chr(int(bloc, 2))
+            print(f"En texte : {resultat_texte}")
+
+elif choix_1 == "4":
+    print("Lancement de la partie fdre...")
